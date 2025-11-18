@@ -6,7 +6,8 @@ Hello Everyone, I am participating in [10 weeks of CloudOps Challenge](https://g
 
 I wrote about it in this [blog post](https://blog.mmuyideen.xyz)
 
-<img src="web/AWS-week-4.png" alt="Archtecture diagram">
+<img src="./AWS-week-4.png" alt="Archtecture diagram">
+
 
 
 
