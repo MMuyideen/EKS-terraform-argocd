@@ -1,44 +1,44 @@
-version: 2.1
+# version: 2.1
 
-orbs:
-  python: circleci/python@2
+# orbs:
+#   python: circleci/python@2
 
-jobs:
-  build_and_push:
-    docker:
-      - image: cimg/python:3.8-node
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Lets build and push image
-          command: |
-            version="build-$CIRCLE_BUILD_NUM"
-            echo $version
-            docker build -t fullbloodprince/deen-todo:$version ./TODO
-            echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-            docker push fullbloodprince/deen-todo:$version
-  Update_manifest:
-    docker:
-      - image: cimg/base:2023.06
-    steps:
-      - checkout
-      - setup_remote_docker
-      - run:
-          name: Updating Manifest file 
-          command: |
-            TAG=$CIRCLE_BUILD_NUM
-            ((TAG--))
-            git clone https://github.com/MMuyideen/aws-week4-kubemanifest.git
-            cd aws-week4-kubemanifest
-            git config --global user.email "dejimorenigbade@gmail.com"
-            git config --global user.name "Muyideen"
-            echo $TAG
-            sed -i "s/build-.*/build-$TAG/g" kube_manifest/deployment.yaml
-            git add .
-            git commit -m "new build with imgTag build-$TAG"
-            git config credential.helper 'cache --timeout=120'
-            git push -q https://$GITHUB_PERSONAL_TOKEN@github.com/MMuyideen/aws-week4-kubemanifest.git
+# jobs:
+#   build_and_push:
+#     docker:
+#       - image: cimg/python:3.8-node
+#     steps:
+#       - checkout
+#       - setup_remote_docker
+#       - run:
+#           name: Lets build and push image
+#           command: |
+#             version="build-$CIRCLE_BUILD_NUM"
+#             echo $version
+#             docker build -t fullbloodprince/deen-todo:$version ./TODO
+#             echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+#             docker push fullbloodprince/deen-todo:$version
+#   Update_manifest:
+#     docker:
+#       - image: cimg/base:2023.06
+#     steps:
+#       - checkout
+#       - setup_remote_docker
+#       - run:
+#           name: Updating Manifest file 
+#           command: |
+#             TAG=$CIRCLE_BUILD_NUM
+#             ((TAG--))
+#             git clone https://github.com/MMuyideen/aws-week4-kubemanifest.git
+#             cd aws-week4-kubemanifest
+#             git config --global user.email "dejimorenigbade@gmail.com"
+#             git config --global user.name "Muyideen"
+#             echo $TAG
+#             sed -i "s/build-.*/build-$TAG/g" kube_manifest/deployment.yaml
+#             git add .
+#             git commit -m "new build with imgTag build-$TAG"
+#             git config credential.helper 'cache --timeout=120'
+#             git push -q https://$GITHUB_PERSONAL_TOKEN@github.com/MMuyideen/aws-week4-kubemanifest.git
 # workflows:
 #   GitOpsflow:
 #     jobs:
