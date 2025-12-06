@@ -1,9 +1,9 @@
 # aws_iam_role.cluster-ServiceRole will be created
-  resource "aws_iam_role" "eks_cluster_iam_role" {
-        # The name of the role
-  name = "${var.PROJECT_NAME}-EKS-role"
+resource "aws_iam_role" "eks_cluster_iam_role" {
 
-   assume_role_policy = <<POLICY
+  name = "${var.PROJECT_NAME}-EKS-role" # The name of the role
+
+  assume_role_policy = <<POLICY
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -19,7 +19,7 @@
 POLICY
 }
 
-  # Resource: aws_iam_role_policy_attachment for EKS cluster and ELB
+# Resource: aws_iam_role_policy_attachment for EKS cluster and ELB
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment
 
 resource "aws_iam_role_policy_attachment" "eks_cluster_policy" {
@@ -60,8 +60,8 @@ POLICY
 
 
 resource "aws_iam_role_policy_attachment" "worker_node" {
-  
-     # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSWorkerNodePolicy
+
+  # https://github.com/SummitRoute/aws_managed_policies/blob/master/policies/AmazonEKSWorkerNodePolicy
 
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
   role       = aws_iam_role.node_group.name

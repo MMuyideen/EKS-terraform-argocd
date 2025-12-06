@@ -1,7 +1,7 @@
 
 # allocate elastic ip for the nat-gateway in the public subnet 1 (PUB_SUB1)
 resource "aws_eip" "EIP-NAT-GW1" {
-domain = "vpc"
+  domain = "vpc"
 
   tags = {
     Name = "NAT-GW-EIP1"
@@ -12,7 +12,7 @@ domain = "vpc"
 
 # allocate elastic ip for the nat-gateway in the public subnet 2 (PUB_SUB2)
 resource "aws_eip" "EIP-NAT-GW2" {
-domain = "vpc"
+  domain = "vpc"
 
   tags = {
     Name = "NAT-GW-EIP2"

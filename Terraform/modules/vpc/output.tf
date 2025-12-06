@@ -16,7 +16,7 @@ output "PRI_SUB4_ID" {
   value = aws_subnet.pri_sub4.id
 }
 output "IGW_ID" {
-    value = aws_internet_gateway.igw
+  value = aws_internet_gateway.igw
 }
 
 output "REGION" {

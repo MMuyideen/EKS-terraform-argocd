@@ -31,7 +31,7 @@ resource "aws_eks_node_group" "node_group" {
   }
 
   # Type of Amazon Machine Image (AMI) associated with the EKS Node Group
- 
+
   ami_type = "AL2_x86_64"
 
   # Type of capacity associated with the EKS Node Group
