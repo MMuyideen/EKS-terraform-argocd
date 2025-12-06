@@ -5,9 +5,6 @@ resource "aws_vpc" "vpc" {
   enable_dns_support               = true
   assign_generated_ipv6_cidr_block = false
 
-
-
-  # tags to assign to the resource.
   tags = {
     Name = "${var.PROJECT_NAME}-vpc"
   }
@@ -26,7 +23,6 @@ resource "aws_internet_gateway" "igw" {
 data "aws_availability_zones" "availability_zones" {}
 
 # create public subnet pub-sub1
-
 resource "aws_subnet" "pub_sub1" {
   vpc_id                  = aws_vpc.vpc.id
   cidr_block              = var.PUB_SUB1_CIDR
@@ -85,7 +81,7 @@ resource "aws_route_table_association" "pub_rt_b" {
   route_table_id = aws_route_table.pub_rt.id
 }
 
-# create public subnet pri-sub3
+# create private subnet pri-sub3
 
 resource "aws_subnet" "pri_sub3" {
   vpc_id                  = aws_vpc.vpc.id
@@ -100,7 +96,7 @@ resource "aws_subnet" "pri_sub3" {
   }
 }
 
-# create public subnet pri-sub4
+# create private subnet pri-sub4
 
 resource "aws_subnet" "pri_sub4" {
   vpc_id                  = aws_vpc.vpc.id

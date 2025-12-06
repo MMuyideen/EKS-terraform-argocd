@@ -8,8 +8,6 @@ resource "aws_eip" "EIP-NAT-GW1" {
   }
 }
 
-
-
 # allocate elastic ip for the nat-gateway in the public subnet 2 (PUB_SUB2)
 resource "aws_eip" "EIP-NAT-GW2" {
   domain = "vpc"
@@ -29,7 +27,7 @@ resource "aws_nat_gateway" "nat_gw1" {
 
   # To ensure proper ordering, it is recommended to add an explicit dependency
   # on the Internet Gateway for the VPC.
-  depends_on = [var.IGW_ID]
+  depends_on = [aws_internet_gateway.igw]
 }
 
 resource "aws_nat_gateway" "nat_gw2" {
