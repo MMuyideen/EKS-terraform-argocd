@@ -8,6 +8,3 @@ terraform destroy -auto-approve
 # empty bucket
 aws s3 rb s3://$S3_BUCKET_NAME \
     --force
-
-aws dynamodb delete-table \
-    --table-name $DB_TABLE_NAME
